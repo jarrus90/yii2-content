@@ -5,7 +5,7 @@ namespace jarrus90\Content\Models;
 
 use Yii;
 
-class PageSearch extends Block {
+class PageSearch extends Page {
 
     /**
      * Validation rules

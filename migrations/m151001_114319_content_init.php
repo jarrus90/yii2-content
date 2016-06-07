@@ -27,9 +27,7 @@ class m151001_114319_content_init extends \yii\db\Migration {
             'key' => $this->string(255)->notNull(),
             'lang_code' => $this->string(10)->notNull(),
             'title' => $this->string(255)->notNull(),
-            'announce' => $this->text(),
             'content' => $this->text()->notNull(),
-            'created_at' => $this->integer(),
                 ], $tableOptions);
 
         $this->createTable('{{%content_category}}', [
@@ -45,7 +43,7 @@ class m151001_114319_content_init extends \yii\db\Migration {
             'key' => $this->string(255)->notNull(),
             'lang_code' => $this->string(10)->notNull(),
             'title' => $this->string(255)->notNull(),
-            'description' => $this->text()->notNull(),
+            'content' => $this->text()->notNull(),
                 ], $tableOptions);
     }
 

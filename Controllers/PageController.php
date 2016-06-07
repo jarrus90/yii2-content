@@ -2,13 +2,12 @@
 
 namespace jarrus90\Content\Controllers;
 
-use Yii;
-use yii\base\Model;
 use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
+use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 
 
-class PageController extends ItemControllerAbstract {
+class PageController extends AdminCrudAbstract {
     
     /**
      *
@@ -17,6 +16,8 @@ class PageController extends ItemControllerAbstract {
     protected $finder;
     
     protected $modelClass = 'jarrus90\Content\Models\Page';
+    
+    protected $formClass = 'jarrus90\Content\Models\PageForm';
     
     protected $searchClass = 'jarrus90\Content\Models\PageSearch';
     
@@ -32,7 +33,7 @@ class PageController extends ItemControllerAbstract {
     }
 
     protected function getItem($id) {
-        return $this->finder->findBlock(['id' => $id]);
+        return $this->finder->findPage(['id' => $id])->one();
     }
 
 }
