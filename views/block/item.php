@@ -22,9 +22,6 @@ $form = ActiveForm::begin([
             ],
         ])
 ?>
-
-<?= $form->field($model, 'key') ?>
-<?php var_dump(Yii::$app->params); ?>
 <?= $form->field($model, 'lang_code')->widget(Select2::className(), [
     'theme' => 'default',
     'data' => [
