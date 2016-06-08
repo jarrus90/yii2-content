@@ -24,7 +24,22 @@ $form = ActiveForm::begin([
 
 <?= $form->field($model, 'key') ?>
 <?= $form->field($model, 'title') ?>
-<?= $form->field($model, 'description')->textarea() ?>
+<?= $form->field($model, 'description')->widget(\jarrus90\Content\Widgets\Redactor::className(), [
+    'clientOptions' => [
+        'lang' => Yii::$app->language,
+        'minHeight' => 200,
+        'plugins' => [
+            'fontsize',
+            'fontcolor',
+            'fontfamily',
+            'table',
+            'counter',
+            'fullscreen',
+            'imagemanager'
+        ],
+    ]
+])
+?>
 
 <?= Html::submitButton(Yii::t('rbac', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 

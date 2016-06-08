@@ -17,7 +17,7 @@
         "php": ">=5.4.0",
         "yiisoft/yii2": "~2.0",
         "kartik-v/yii2-widgets": "*",
-        "yiidoc/yii2-redactor": "*"
+        "jarrus90/yii2-redactor": "*"
     },
     "autoload": {
         "psr-4": {

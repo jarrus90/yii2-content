@@ -25,6 +25,15 @@ class BlockForm extends \jarrus90\Core\Models\Model {
      * @param \app\modules\Blog\Models\BlogPost $post Post item
      */
         
+    /**
+     * Allowed textarea tag attributes
+     * @var array
+     */
+    protected $_safeAttributes = [
+        'style',
+        'src'
+    ];
+    
     public function scenarios() {
         return [
             'create' => ['key', 'title', 'content'],
@@ -76,7 +85,7 @@ class BlockForm extends \jarrus90\Core\Models\Model {
         if ($this->validate()) {
             $this->_model->key = $this->cleanTextinput($this->key);
             $this->_model->title = $this->cleanTextinput($this->title);
-            $this->_model->content = $this->cleanTextarea($this->content);
+            $this->_model->content = $this->cleanTextarea($this->content, $this->_safeAttributes, '<a>');
             if ($this->_model->save()) {
                 return $this->_model;
             }

@@ -12,7 +12,7 @@
 namespace jarrus90\Content;
 
 use yii\base\Module as BaseModule;
-
+use yii\helpers\ArrayHelper;
 /**
  * This is the main module class for the Yii2-user.
  *
@@ -36,5 +36,22 @@ class Module extends BaseModule {
     public $urlRules = [
         '<name:[A-Za-z0-9_-]+>' => 'front/page'
     ];
+    
+    public $redactor = [
+        
+    ];
+
+    public function init() {
+        parent::init();
+        $this->modules = [
+            'redactor' => ArrayHelper::merge([
+                'class' => 'yii\redactor\RedactorModule',
+                'imageUploadRoute' => '/content/upload/image',
+                'fileUploadRoute' => '/content/upload/file',
+                'imageManagerJsonRoute' => '/content/upload/image-json',
+                'fileManagerJsonRoute' => '/content/upload/file-json'
+            ], $this->redactor),
+        ];
+    }
 
 }
