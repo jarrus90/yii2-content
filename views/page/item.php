@@ -41,7 +41,7 @@ $form = ActiveForm::begin([
 ])
 ?>
 
-<?= Html::submitButton(Yii::t('rbac', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
+<?= Html::submitButton(Yii::t('content', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 
 <?php ActiveForm::end() ?>
 <?php $this->endContent() ?>

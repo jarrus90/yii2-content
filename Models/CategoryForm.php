@@ -1,46 +1,38 @@
 <?php
 
-/**
- * Class PostForm
- * 
- * @package app\modules\Blog\Forms
- */
-
 namespace jarrus90\Content\Models;
 
 use Yii;
-/**
- * Form for posts saving and updating
- *
- * @property \app\modules\Blog\Models\BlogPost $_model Post item
- */
+
 class CategoryForm extends \jarrus90\Core\Models\Model {
 
     public $key;
     public $title;
     public $description;
-        
+    public $lang_code;
+
     /**
      * Create form object
      * @param \app\modules\Blog\Models\BlogPost $post Post item
      */
-        
     public function scenarios() {
         return [
-            'create' => ['key', 'title', 'description'],
-            'update' => ['key', 'title', 'description'],
+            'create' => ['key', 'title', 'description', 'lang_code'],
+            'update' => ['key', 'title', 'description', 'lang_code'],
         ];
     }
+
     /** @inheritdoc */
     public function init() {
         parent::init();
-        if(!empty($this->item)) {
+        if (!empty($this->item)) {
             $this->key = $this->_model->key;
             $this->title = $this->_model->title;
             $this->description = $this->_model->description;
+            $this->lang_code = $this->_model->lang_code;
         }
     }
-    
+
     public function __construct($config = []) {
         parent::__construct($config);
     }
@@ -51,10 +43,10 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
      */
     public function rules() {
         return [
-            'required' => [['key', 'title', 'description'], 'required'],
+            'required' => [['key', 'title', 'description', 'lang_code'], 'required'],
             'codeUnique' => ['key', 'unique', 'targetClass' => Yii::$app->getModule('content')->modelMap['Category'], 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
-                return $model->key != $model->_model->key;
-            }],
+                    return $model->key != $model->_model->key;
+                }],
         ];
     }
 
@@ -64,7 +56,6 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
      */
     public function attributeLabels() {
         return [
-            
         ];
     }
 
@@ -77,10 +68,12 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
             $this->_model->key = $this->cleanTextinput($this->key);
             $this->_model->title = $this->cleanTextinput($this->title);
             $this->_model->description = $this->cleanTextarea($this->description);
+            $this->_model->lang_code = $this->lang_code;
             if ($this->_model->save()) {
                 return $this->_model;
             }
         }
         return false;
     }
+
 }

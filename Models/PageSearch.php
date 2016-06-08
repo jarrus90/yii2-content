@@ -2,7 +2,6 @@
 
 namespace jarrus90\Content\Models;
 
-
 use Yii;
 
 class PageSearch extends Page {
@@ -28,7 +27,6 @@ class PageSearch extends Page {
             'title' => \Yii::t('content', 'Title'),
         ];
     }
-
 
     /**
      * Search categories list

@@ -1,14 +1,5 @@
 <?php
 
-/**
- * m151001_114319_content_init
- *
- * @package app\console\migrations
- */
-
-/**
- * Migration to set up cms tables
- */
 class m151001_114319_content_init extends \yii\db\Migration {
 
     /**

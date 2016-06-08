@@ -24,7 +24,7 @@ Nav::widget([
             'url' => ['/content/block/index'],
         ],
         [
-            'label' => Yii::t('user', 'Create'),
+            'label' => Yii::t('content', 'Create'),
             'options' => [
                 'class' => 'pull-right',
             ],

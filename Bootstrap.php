@@ -1,14 +1,5 @@
 <?php
 
-/*
- * This file is part of the Dektrium project.
- *
- * (c) Dektrium project <http://github.com/dektrium/>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace jarrus90\Content;
 
 use Yii;
@@ -19,8 +10,6 @@ use yii\console\Application as ConsoleApplication;
 /**
  * Bootstrap class registers module and user application component. It also creates some url rules which will be applied
  * when UrlManager.enablePrettyUrl is enabled.
- *
- * @author Dmitry Erofeev <dmeroff@gmail.com>
  */
 class Bootstrap implements BootstrapInterface {
 
@@ -74,7 +63,7 @@ class Bootstrap implements BootstrapInterface {
                     'sourceLanguage' => 'en-US'
                 ];
             }
-            
+
             $app->params['yii.migrations'][] = '@jarrus90/Content/migrations/';
         }
     }

@@ -1,20 +1,12 @@
 <?php
 
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace jarrus90\Content\Controllers;
 
 use Yii;
 use yii\web\Response;
 use jarrus90\Content\traits\ModuleTrait;
-/**
- * @author Nghia Nguyen <yiidevelop@hotmail.com>
- * @since 2.0
- */
+
 class UploadController extends \yii\web\Controller {
 
     use ModuleTrait;

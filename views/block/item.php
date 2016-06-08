@@ -6,6 +6,7 @@
  */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use kartik\select2\Select2;
 ?>
 <?php $this->beginContent('@jarrus90/Content/views/_adminLayout.php') ?>
 
@@ -23,6 +24,21 @@ $form = ActiveForm::begin([
 ?>
 
 <?= $form->field($model, 'key') ?>
+<?php var_dump(Yii::$app->params); ?>
+<?= $form->field($model, 'lang_code')->widget(Select2::className(), [
+    'theme' => 'default',
+    'data' => [
+        'en' => 'English'
+    ],
+    'options' => [
+        'placeholder' => Yii::t('content', 'Select language'),
+    ],
+    'pluginOptions' => [
+        'tags' => true,
+        'maximumInputLength' => 10
+    ],
+]);
+?>
 <?= $form->field($model, 'title') ?>
 <?= $form->field($model, 'content')->widget(\jarrus90\Content\Widgets\Redactor::className(), [
     'clientOptions' => [
@@ -41,7 +57,7 @@ $form = ActiveForm::begin([
 ])
 ?>
 
-<?= Html::submitButton(Yii::t('rbac', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
+<?= Html::submitButton(Yii::t('content', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 
 <?php ActiveForm::end() ?>
 <?php $this->endContent() ?>
