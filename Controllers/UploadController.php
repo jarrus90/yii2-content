@@ -47,14 +47,14 @@ class UploadController extends \yii\web\Controller {
                 'class' => '\jarrus90\Redactor\Actions\ImageUploadAction',
                 'module' => $this->module->getModule('redactor')
             ],
-            /*'file-json' => [
-                'class' => '\jarrus90\Redactor\Actions\FileUploadAction',
+            'file-json' => [
+                'class' => '\jarrus90\Redactor\Actions\FileManagerJsonAction',
                 'module' => $this->module->getModule('redactor')
             ],
             'image-json' => [
-                'class' => '\jarrus90\Redactor\Actions\FileUploadAction',
+                'class' => '\jarrus90\Redactor\Actions\ImageManagerJsonAction',
                 'module' => $this->module->getModule('redactor')
-            ],*/
+            ],
         ];
     }
 }

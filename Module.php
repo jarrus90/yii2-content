@@ -37,10 +37,8 @@ class Module extends BaseModule {
         '<name:[A-Za-z0-9_-]+>' => 'front/page'
     ];
     
-    public $redactor = [
-        
-    ];
-
+    public $redactor = [];
+    
     public function init() {
         parent::init();
         $this->modules = [
