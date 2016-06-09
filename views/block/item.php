@@ -22,6 +22,7 @@ $form = ActiveForm::begin([
             ],
         ])
 ?>
+<?= $form->field($model, 'key') ?>
 <?= $form->field($model, 'lang_code')->widget(Select2::className(), [
     'theme' => 'default',
     'data' => [
