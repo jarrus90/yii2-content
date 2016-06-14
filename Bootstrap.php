@@ -13,34 +13,16 @@ use yii\console\Application as ConsoleApplication;
  */
 class Bootstrap implements BootstrapInterface {
 
-    /** @var array Model's map */
-    private $_modelMap = [
-        'Category' => 'jarrus90\Content\Models\Category',
-        'Page' => 'jarrus90\Content\Models\Page',
-        'Block' => 'jarrus90\Content\Models\Block',
-    ];
 
     /** @inheritdoc */
     public function bootstrap($app) {
         /** @var Module $module */
         /** @var \yii\db\ActiveRecord $modelName */
         if ($app->hasModule('content') && ($module = $app->getModule('content')) instanceof Module) {
-            $this->_modelMap = array_merge($this->_modelMap, $module->modelMap);
-            foreach ($this->_modelMap as $name => $definition) {
-                $class = "jarrus90\\Content\\Models\\" . $name;
-                Yii::$container->set($class, $definition);
-                $modelName = is_array($definition) ? $definition['class'] : $definition;
-                $module->modelMap[$name] = $modelName;
-                if (in_array($name, ['Category', 'Page', 'Block'])) {
-                    Yii::$container->set("Content{$name}Query", function () use ($modelName) {
-                        return $modelName::find();
-                    });
-                }
-            }
             Yii::$container->setSingleton(ContentFinder::className(), [
-                'categoryQuery' => Yii::$container->get('ContentCategoryQuery'),
-                'pageQuery' => Yii::$container->get('ContentPageQuery'),
-                'blockQuery' => Yii::$container->get('ContentBlockQuery'),
+                'categoryQuery' => \jarrus90\Content\Models\Category::find(),
+                'pageQuery' => \jarrus90\Content\Models\Page::find(),
+                'blockQuery' => \jarrus90\Content\Models\Block::find(),
             ]);
 
             if (!$app instanceof ConsoleApplication) {

@@ -29,10 +29,6 @@ class PageForm extends \jarrus90\Core\Models\Model {
         }
     }
 
-    public function __construct($config = []) {
-        parent::__construct($config);
-    }
-
     /**
      * Validation rules
      * @return array
@@ -40,7 +36,7 @@ class PageForm extends \jarrus90\Core\Models\Model {
     public function rules() {
         return [
             'required' => [['key', 'title', 'content', 'lang_code'], 'required'],
-            'codeUnique' => ['key', 'unique', 'targetClass' => Yii::$app->getModule('content')->modelMap['Page'], 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
+            'codeUnique' => ['key', 'unique', 'targetClass' => \jarrus90\Content\Models\Page::className(), 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
                     return $model->key != $model->_model->key;
                 }],
         ];

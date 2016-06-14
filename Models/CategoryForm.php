@@ -44,7 +44,7 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
     public function rules() {
         return [
             'required' => [['key', 'title', 'description', 'lang_code'], 'required'],
-            'codeUnique' => ['key', 'unique', 'targetClass' => Yii::$app->getModule('content')->modelMap['Category'], 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
+            'codeUnique' => ['key', 'unique', 'targetClass' => \jarrus90\Content\Models\Category::className(), 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
                     return $model->key != $model->_model->key;
                 }],
         ];

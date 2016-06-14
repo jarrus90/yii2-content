@@ -9,7 +9,6 @@ use jarrus90\Core\Web\Controllers\FrontController as Controller;
 class FrontController extends Controller {
 
     /**
-     *
      * @var ContentFinder 
      */
     protected $finder;

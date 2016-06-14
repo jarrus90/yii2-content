@@ -9,7 +9,6 @@ use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 class BlockController extends AdminCrudAbstract {
     
     /**
-     *
      * @var ContentFinder 
      */
     protected $finder;

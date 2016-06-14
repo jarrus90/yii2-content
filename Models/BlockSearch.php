@@ -2,7 +2,6 @@
 
 namespace jarrus90\Content\Models;
 
-
 use Yii;
 
 class BlockSearch extends Block {
@@ -28,7 +27,6 @@ class BlockSearch extends Block {
             'title' => \Yii::t('content', 'Title'),
         ];
     }
-
 
     /**
      * Search categories list

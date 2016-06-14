@@ -7,9 +7,6 @@ use yii\helpers\ArrayHelper;
 
 class Module extends BaseModule {
 
-    /** @var array Model map */
-    public $modelMap = [];
-
     /**
      * @var string The prefix for user module URL.
      *

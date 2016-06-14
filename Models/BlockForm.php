@@ -10,12 +10,7 @@ class BlockForm extends \jarrus90\Core\Models\Model {
     public $title;
     public $content;
     public $lang_code;
-        
-    /**
-     * Create form object
-     * @param \app\modules\Blog\Models\BlogPost $post Post item
-     */
-        
+
     /**
      * Allowed textarea tag attributes
      * @var array
@@ -24,26 +19,23 @@ class BlockForm extends \jarrus90\Core\Models\Model {
         'style',
         'src'
     ];
-    
+
     public function scenarios() {
         return [
             'create' => ['key', 'title', 'content', 'lang_code'],
             'update' => ['key', 'title', 'content', 'lang_code'],
         ];
     }
+
     /** @inheritdoc */
     public function init() {
         parent::init();
-        if(!empty($this->item)) {
+        if (!empty($this->item)) {
             $this->key = $this->_model->key;
             $this->title = $this->_model->title;
             $this->content = $this->_model->content;
             $this->lang_code = $this->_model->lang_code;
         }
-    }
-    
-    public function __construct($config = []) {
-        parent::__construct($config);
     }
 
     /**
@@ -53,9 +45,9 @@ class BlockForm extends \jarrus90\Core\Models\Model {
     public function rules() {
         return [
             'required' => [['key', 'title', 'content', 'lang_code'], 'required'],
-            'codeUnique' => ['key', 'unique', 'targetClass' => Yii::$app->getModule('content')->modelMap['Block'], 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
-                return $model->key != $model->_model->key;
-            }],
+            'codeUnique' => ['key', 'unique', 'targetClass' => \jarrus90\Content\Models\Block::className(), 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
+                    return $model->key != $model->_model->key;
+                }],
         ];
     }
 
@@ -65,7 +57,6 @@ class BlockForm extends \jarrus90\Core\Models\Model {
      */
     public function attributeLabels() {
         return [
-            
         ];
     }
 
@@ -85,4 +76,5 @@ class BlockForm extends \jarrus90\Core\Models\Model {
         }
         return false;
     }
+
 }
