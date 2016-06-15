@@ -46,15 +46,9 @@ class Category extends ActiveRecord {
     public function init() {
         parent::init();
         if ($this->item instanceof Category) {
+            $this->id = $this->item->id;
+            $this->setAttributes($this->item->getAttributes());
             $this->setIsNewRecord($this->item->getIsNewRecord());
-            if (!$this->isNewRecord) {
-                $this->id = $this->item->id;
-                $this->setOldAttribute('id', $this->item->id);
-            }
-            $this->key = $this->item->key;
-            $this->title = $this->item->title;
-            $this->description = $this->item->description;
-            $this->lang_code = $this->item->lang_code;
         }
     }
 
