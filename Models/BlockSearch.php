@@ -12,7 +12,7 @@ class BlockSearch extends Block {
      */
     public function rules() {
         return [
-            [['key', 'title'], 'safe'],
+            [['key', 'title', 'lang_code'], 'safe'],
         ];
     }
 
@@ -25,6 +25,7 @@ class BlockSearch extends Block {
             'id' => 'ID',
             'key' => \Yii::t('content', 'Block key'),
             'title' => \Yii::t('content', 'Title'),
+            'lang_code' => \Yii::t('content', 'Language'),
         ];
     }
 
@@ -49,6 +50,7 @@ class BlockSearch extends Block {
         if ($this->load($params) && $this->validate()) {
             $query->andFilterWhere(['like', 'key', $this->key]);
             $query->andFilterWhere(['like', 'title', $this->title]);
+            $query->andFilterWhere(['lang_code' => $this->lang_code]);
         }
         return $dataProvider;
     }

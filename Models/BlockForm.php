@@ -3,8 +3,11 @@
 namespace jarrus90\Content\Models;
 
 use Yii;
+use jarrus90\Multilang\Models\Language;
 
 class BlockForm extends \jarrus90\Core\Models\Model {
+
+    use \jarrus90\Content\traits\KeyCodeValidateTrait;
 
     public $key;
     public $title;
@@ -30,11 +33,13 @@ class BlockForm extends \jarrus90\Core\Models\Model {
     /** @inheritdoc */
     public function init() {
         parent::init();
-        if (!empty($this->item)) {
+        if (!empty($this->_model)) {
             $this->key = $this->_model->key;
             $this->title = $this->_model->title;
             $this->content = $this->_model->content;
             $this->lang_code = $this->_model->lang_code;
+        } else {
+            throw new \yii\base\InvalidConfigException('Variable "item" should be set');
         }
     }
 
@@ -45,9 +50,8 @@ class BlockForm extends \jarrus90\Core\Models\Model {
     public function rules() {
         return [
             'required' => [['key', 'title', 'content', 'lang_code'], 'required'],
-            'codeUnique' => ['key', 'unique', 'targetClass' => \jarrus90\Content\Models\Block::className(), 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
-                    return $model->key != $model->_model->key;
-                }],
+            'keyValid' => ['key', 'validateKeyCodePair'],
+            'langExists' => ['lang_code', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'code'],
         ];
     }
 

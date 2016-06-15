@@ -6,6 +6,8 @@
  */
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use kartik\select2\Select2;
+use jarrus90\Multilang\Models\Language;
 ?>
 <?php $this->beginContent('@jarrus90/Content/views/_adminLayout.php') ?>
 
@@ -23,6 +25,14 @@ $form = ActiveForm::begin([
 ?>
 
 <?= $form->field($model, 'key') ?>
+<?= $form->field($model, 'lang_code')->widget(Select2::className(), [
+    'theme' => 'default',
+    'data' => Language::listMap(),
+    'options' => [
+        'placeholder' => Yii::t('content', 'Select language'),
+    ],
+]);
+?>
 <?= $form->field($model, 'title') ?>
 <?= $form->field($model, 'description')->widget(\jarrus90\Content\Widgets\Redactor::className(), [
     'clientOptions' => [

@@ -12,10 +12,13 @@ class CategorySearch extends Category {
      */
     public function rules() {
         return [
-            [['key', 'title'], 'safe'],
+            [['key', 'title', 'lang_code'], 'safe'],
         ];
     }
 
+    public function formName(){
+        return '';
+    }
     /**
      * Attribute labels
      * @return array
@@ -25,6 +28,7 @@ class CategorySearch extends Category {
             'id' => 'ID',
             'key' => \Yii::t('content', 'Category key'),
             'title' => \Yii::t('content', 'Title'),
+            'lang_code' => \Yii::t('content', 'Language'),
         ];
     }
 
@@ -49,6 +53,7 @@ class CategorySearch extends Category {
         if ($this->load($params) && $this->validate()) {
             $query->andFilterWhere(['like', 'key', $this->key]);
             $query->andFilterWhere(['like', 'title', $this->title]);
+            $query->andFilterWhere(['lang_code' => $this->lang_code]);
         }
         return $dataProvider;
     }

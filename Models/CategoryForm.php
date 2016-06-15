@@ -3,8 +3,11 @@
 namespace jarrus90\Content\Models;
 
 use Yii;
+use jarrus90\Multilang\Models\Language;
 
 class CategoryForm extends \jarrus90\Core\Models\Model {
+
+    use \jarrus90\Content\traits\KeyCodeValidateTrait;
 
     public $key;
     public $title;
@@ -25,16 +28,14 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
     /** @inheritdoc */
     public function init() {
         parent::init();
-        if (!empty($this->item)) {
+        if (!empty($this->_model)) {
             $this->key = $this->_model->key;
             $this->title = $this->_model->title;
             $this->description = $this->_model->description;
             $this->lang_code = $this->_model->lang_code;
+        } else {
+            throw new \yii\base\InvalidConfigException('Variable "item" should be set');
         }
-    }
-
-    public function __construct($config = []) {
-        parent::__construct($config);
     }
 
     /**
@@ -44,9 +45,8 @@ class CategoryForm extends \jarrus90\Core\Models\Model {
     public function rules() {
         return [
             'required' => [['key', 'title', 'description', 'lang_code'], 'required'],
-            'codeUnique' => ['key', 'unique', 'targetClass' => \jarrus90\Content\Models\Category::className(), 'message' => Yii::t('content', 'Key must be unique'), 'when' => function($model) {
-                    return $model->key != $model->_model->key;
-                }],
+            'keyValid' => ['key', 'validateKeyCodePair'],
+            'langExists' => ['lang_code', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'code'],
         ];
     }
 

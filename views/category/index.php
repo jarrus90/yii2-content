@@ -1,8 +1,11 @@
 <?php
 
 use yii\web\View;
+use yii\helpers\Url;
+use yii\helpers\Html;
 use kartik\grid\GridView;
 use yii\data\ActiveDataProvider;
+use jarrus90\Multilang\Models\Language;
 
 /**
  * @var View $this
@@ -17,9 +20,45 @@ GridView::widget([
     'pjax' => true,
     'hover' => true,
     'export' => false,
-    'layout' => "{items}{pager}",
+    'id' => 'list-table',
+    'toolbar' => [
+        ['content' =>
+            Html::a('<i class="glyphicon glyphicon-plus"></i>', Url::toRoute(['create']), [
+                'data-pjax' => 0,
+                'class' => 'btn btn-default',
+                'title' => \Yii::t('content', 'New category')]
+            )
+            . ' ' .
+            Html::a('<i class="glyphicon glyphicon-repeat"></i>', Url::toRoute(['index']), [
+                'data-pjax' => 0,
+                'class' => 'btn btn-default',
+                'title' => Yii::t('content', 'Reset filter')]
+            )
+            . ' ' .
+            Html::a('<i class="glyphicon glyphicon-list-alt"></i>', Url::toRoute(['check']), [
+                'data-pjax' => 0,
+                'class' => 'btn btn-default',
+                'title' => Yii::t('content', 'Check filling')]
+            )
+        ],
+    ],
+    'panel' => [
+        'type' => \kartik\grid\GridView::TYPE_DEFAULT
+    ],
+    'layout' => "{toolbar}{items}{pager}",
     'pager' => ['options' => ['class' => 'pagination pagination-sm no-margin']],
     'columns' => [
+        [
+            'attribute' => 'lang_code',
+            'filterType' => GridView::FILTER_SELECT2,
+            'filterWidgetOptions' => [
+                'theme' => 'default',
+                'data' => Language::listMap(),
+                'options' => ['placeholder' => Yii::t('content', 'Language')],
+                'pluginOptions' => ['allowClear' => true],
+            ],
+            'width' => '10%'
+        ],
         [
             'attribute' => 'key',
             'width' => '40%'
@@ -27,10 +66,6 @@ GridView::widget([
         [
             'attribute' => 'title',
             'width' => '40%'
-        ],
-        [
-            'attribute' => 'lang_code',
-            'width' => '10%'
         ],
         [
             'class' => 'yii\grid\ActionColumn',

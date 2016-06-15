@@ -20,6 +20,8 @@ class m151001_114319_content_init extends \yii\db\Migration {
             'title' => $this->string(255)->notNull(),
             'content' => $this->text()->notNull(),
                 ], $tableOptions);
+        $this->createIndex('content_page_unique', '{{%content_page}}', ['key', 'lang_code'], true);
+        $this->addForeignKey('fk-content_page_lang', '{{%content_page}}', 'lang_code', '{{%languages}}', 'code', 'CASCADE', 'RESTRICT');
 
         $this->createTable('{{%content_category}}', [
             'id' => $this->primaryKey(),
@@ -28,7 +30,15 @@ class m151001_114319_content_init extends \yii\db\Migration {
             'title' => $this->string(255)->notNull(),
             'description' => $this->text()->notNull(),
                 ], $tableOptions);
+        $this->createIndex('content_category_unique', '{{%content_category}}', ['key', 'lang_code'], true);
+        $this->addForeignKey('fk-content_category_lang', '{{%content_category}}', 'lang_code', '{{%languages}}', 'code', 'CASCADE', 'RESTRICT');
 
+        $this->createTable('{{%content_category_page}}', [
+            'page_key' => $this->string(255)->notNull(),
+            'category_key' => $this->string(255)->notNull(),
+                ], $tableOptions);
+        $this->addPrimaryKey('pk-content_category_page', '{{%content_category_page}}', ['page_key', 'category_key']);
+        
         $this->createTable('{{%content_block}}', [
             'id' => $this->primaryKey(),
             'key' => $this->string(255)->notNull(),
@@ -36,6 +46,8 @@ class m151001_114319_content_init extends \yii\db\Migration {
             'title' => $this->string(255)->notNull(),
             'content' => $this->text()->notNull(),
                 ], $tableOptions);
+        $this->createIndex('content_block_unique', '{{%content_block}}', ['key', 'lang_code'], true);
+        $this->addForeignKey('fk-content_block_lang', '{{%content_block}}', 'lang_code', '{{%languages}}', 'code', 'CASCADE', 'RESTRICT');
     }
 
     /**
