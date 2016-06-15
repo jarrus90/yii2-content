@@ -15,8 +15,8 @@ class PageController extends AdminCrudAbstract {
      */
     protected $finder;
     protected $modelClass = 'jarrus90\Content\Models\Page';
-    protected $formClass = 'jarrus90\Content\Models\PageForm';
-    protected $searchClass = 'jarrus90\Content\Models\PageSearch';
+    protected $formClass = 'jarrus90\Content\Models\Page';
+    protected $searchClass = 'jarrus90\Content\Models\Page';
 
     /**
      * List of available upload actions

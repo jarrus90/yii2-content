@@ -16,9 +16,9 @@ class BlockController extends AdminCrudAbstract {
     
     protected $modelClass = 'jarrus90\Content\Models\Block';
     
-    protected $formClass = 'jarrus90\Content\Models\BlockForm';
+    protected $formClass = 'jarrus90\Content\Models\Block';
     
-    protected $searchClass = 'jarrus90\Content\Models\BlockSearch';
+    protected $searchClass = 'jarrus90\Content\Models\Block';
     
     /**
      * List of available upload actions
