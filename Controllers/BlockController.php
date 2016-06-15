@@ -43,12 +43,28 @@ class BlockController extends AdminCrudAbstract {
     public function __construct($id, $module, ContentFinder $finder, $config = []) {
         $this->finder = $finder;
         Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
-        Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Blocks');
+        Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Blocks'), 'url' => ['index']];
         parent::__construct($id, $module, $config);
+    }
+    
+    public function actionCreate() {
+        Yii::$app->view->title = Yii::t('content', 'Create block');
+        return parent::actionCreate();
+    }
+
+    public function actionUpdate($id) {
+        $item = $this->getItem($id);
+        Yii::$app->view->title = Yii::t('content', 'Edit block {title}', ['title' => $item->title]);
+        return parent::actionUpdate($id);
     }
 
     protected function getItem($id) {
-        return $this->finder->findBlock(['id' => $id])->one();
+        $item = $this->finder->findBlock(['id' => $id])->one();
+        if ($item) {
+            return $item;
+        } else {
+            throw new \yii\web\NotFoundHttpException(Yii::t('content', 'The requested block does not exist'));
+        }
     }
     
     protected function createModelParams() {

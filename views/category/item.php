@@ -8,6 +8,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use kartik\select2\Select2;
 use jarrus90\Multilang\Models\Language;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php $this->beginContent('@jarrus90/Content/views/_adminLayout.php') ?>
 
