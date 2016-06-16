@@ -23,7 +23,7 @@ class Module extends BaseModule {
     public $filesUploadDir = '@webroot/uploads/content';
             
     public $storageConfig = [
-        'path' => '@webroot/uploads/content'
+        
     ];
     
     public $redactorConfig = [];
@@ -44,9 +44,14 @@ class Module extends BaseModule {
             ]),
         ];
         $this->components = [
-            'storage' => ArrayHelper::merge([
-                'class' => 'creocoder\flysystem\LocalFilesystem'
-            ], $this->storageConfig),
+            'storage' => ArrayHelper::merge(
+                [
+                    'class' => 'creocoder\flysystem\LocalFilesystem',
+                    'path' => $this->filesUploadDir
+                ], 
+                ISSET(Yii::$app->params['storage']) ? Yii::$app->params['storage'] : [],
+                $this->storageConfig
+            ),
         ];
     }
 }
