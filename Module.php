@@ -19,19 +19,34 @@ class Module extends BaseModule {
         '<key:[A-Za-z0-9_-]+>' => 'front/page'
     ];
     
-    public $redactor = [];
+    public $filesUploadUrl = '@web/uploads/content';
+    public $filesUploadDir = '@webroot/uploads/content';
+            
+    public $storageConfig = [
+        'path' => '@webroot/uploads/content'
+    ];
     
+    public $redactorConfig = [];
+        
     public function init() {
         parent::init();
         $this->modules = [
             'redactor' => ArrayHelper::merge([
-                'class' => 'yii\redactor\RedactorModule',
+                'class' => 'jarrus90\Redactor\Module',
                 'imageUploadRoute' => '/content/upload/image',
                 'fileUploadRoute' => '/content/upload/file',
                 'imageManagerJsonRoute' => '/content/upload/image-json',
-                'fileManagerJsonRoute' => '/content/upload/file-json'
-            ], $this->redactor),
+                'fileManagerJsonRoute' => '/content/upload/file-json',
+                'uploadUrl' => '@web/uploads/content'
+            ], $this->redactorConfig, [
+                'uploadUrl' => $this->filesUploadUrl,
+                'uploadDir' => $this->filesUploadDir,
+            ]),
+        ];
+        $this->components = [
+            'storage' => ArrayHelper::merge([
+                'class' => 'creocoder\flysystem\LocalFilesystem'
+            ], $this->storageConfig),
         ];
     }
-
 }

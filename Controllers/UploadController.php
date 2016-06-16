@@ -33,19 +33,23 @@ class UploadController extends \yii\web\Controller {
         return [
             'file' => [
                 'class' => '\jarrus90\Redactor\Actions\FileUploadAction',
-                'module' => $this->module->getModule('redactor')
+                'module' => $this->module->getModule('redactor'),
+                'storage' => $this->module->storage
             ],
             'image' => [
                 'class' => '\jarrus90\Redactor\Actions\ImageUploadAction',
-                'module' => $this->module->getModule('redactor')
+                'module' => $this->module->getModule('redactor'),
+                'storage' => $this->module->storage
             ],
             'file-json' => [
                 'class' => '\jarrus90\Redactor\Actions\FileManagerJsonAction',
-                'module' => $this->module->getModule('redactor')
+                'module' => $this->module->getModule('redactor'),
+                'storage' => $this->module->storage
             ],
             'image-json' => [
                 'class' => '\jarrus90\Redactor\Actions\ImageManagerJsonAction',
-                'module' => $this->module->getModule('redactor')
+                'module' => $this->module->getModule('redactor'),
+                'storage' => $this->module->storage
             ],
         ];
     }

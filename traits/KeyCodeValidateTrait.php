@@ -25,10 +25,10 @@ trait KeyCodeValidateTrait {
         if (!empty($errorLangExists)) {
             $this->addError('lang_code', $errorLangExists);
         } else {
-            if ($this->_model->findOne([
+            if (($testItem = $this->findOne([
                         'key' => $this->key,
                         'lang_code' => $this->lang_code,
-                    ])) {
+                    ])) && $testItem->id != $this->id) {
                 $this->addError($attribute, \Yii::t('content', 'Key must be unique for selected language'));
             }
         }
