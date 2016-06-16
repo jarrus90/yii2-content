@@ -2,6 +2,7 @@
 
 namespace jarrus90\Content;
 
+use Yii;
 use yii\base\Module as BaseModule;
 use yii\helpers\ArrayHelper;
 
@@ -22,10 +23,7 @@ class Module extends BaseModule {
     public $filesUploadUrl = '@web/uploads/content';
     public $filesUploadDir = '@webroot/uploads/content';
             
-    public $storageConfig = [
-        
-    ];
-    
+    public $storageConfig = [];
     public $redactorConfig = [];
         
     public function init() {
