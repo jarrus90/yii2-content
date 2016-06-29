@@ -54,6 +54,10 @@ class m151001_114319_content_init extends \yii\db\Migration {
      * Drop tables.
      */
     public function down() {
+        $this->dropForeignKey('fk-content_block_lang', '{{%content_block}}');
+        $this->dropForeignKey('fk-content_category_lang', '{{%content_category}}');
+        $this->dropForeignKey('fk-content_page_lang', '{{%content_page}}');
+        $this->dropTable('{{%content_category_page}}');
         $this->dropTable('{{%content_block}}');
         $this->dropTable('{{%content_category}}');
         $this->dropTable('{{%content_page}}');
