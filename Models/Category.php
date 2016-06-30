@@ -28,6 +28,15 @@ class Category extends ActiveRecord {
             'search' => ['key', 'title', 'lang_code'],
         ];
     }
+    
+    public function attributeLabels(){
+        return [
+            'key' => Yii::t('content', 'Key'),
+            'title' => Yii::t('content', 'Title'),
+            'description' => Yii::t('content', 'Description'),
+            'lang_code' => Yii::t('content', 'Language'),
+        ];
+    }
 
     /**
      * Validation rules

@@ -9,7 +9,7 @@
  * Each array element represents the translation (value) of a message (key).
  * If the value is empty, the message is considered as not translated.
  * Messages that no longer need translation will have their translations
- * enclosed between a pair of '@@' marks.
+ * enclosed between a pair of '' marks.
  *
  * Message string can be used with plural forms format. Check i18n section
  * of the guide for details.
@@ -17,16 +17,40 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Check filling' => 'Проверить заполнение',
+    'Check inexistent blocks variants' => 'Проверка незаполненных вариантов блоков',
+    'Check inexistent categories variants' => 'Проверка незаполненных вариантов категорий',
+    'Check inexistent pages variants' => 'Проверка незаполненных вариантов страниц',
+    'Content' => 'Контент',
+    'Create block' => 'Создать блок',
+    'Create category' => 'Создать категорию',
+    'Create page' => 'Создать страницу',
+    'Description' => 'Описание',
+    'Edit block {title}' => 'Редактирование блока {title}',
+    'Edit category {title}' => 'Редактирование категории {title}',
+    'Edit page {title}' => 'Редактирование страницы {title}',
+    'Everything is filled, good work' => 'Все заполнено, отличная работа',
+    'Key' => 'Ключ',
+    'Key must be unique for selected language' => 'Ключ должен быть уникален для выбранного языка',
+    'Language' => 'Язык',
+    'New block' => 'Новый блок',
+    'New category' => 'Новая категория',
+    'New page' => 'Новая страница',
+    'Reset filter' => 'Сбросить фильтр',
+    'Select language' => 'Выбор языка',
+    'The requested block does not exist' => 'Запрошенный блок не существует',
+    'The requested category does not exist' => 'Запрошенная категория не существует',
+    'The requested page does not exist' => 'Запрошенная страница не существует',
     'Block' => 'Блок',
     'Block key' => 'Ключ блока',
-    'Blocks' => 'Блоки',
-    'Categories' => 'Категории',
     'Category' => 'Категория',
     'Category key' => 'Ключ категории',
     'Create' => 'Создать',
     'Key must be unique' => 'Ключ должен быть уникальным',
     'Page' => 'Страница',
     'Page key' => 'Ключ страницы',
+    'Blocks' => 'Блоки',
+    'Categories' => 'Категории',
     'Pages' => 'Страницы',
     'Save' => 'Сохранить',
     'Title' => 'Заголовок',

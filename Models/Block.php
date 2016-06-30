@@ -24,6 +24,15 @@ class Block extends ActiveRecord {
             'search' => ['key', 'title', 'lang_code'],
         ];
     }
+    
+    public function attributeLabels(){
+        return [
+            'key' => Yii::t('content', 'Key'),
+            'title' => Yii::t('content', 'Title'),
+            'content' => Yii::t('content', 'Content'),
+            'lang_code' => Yii::t('content', 'Language'),
+        ];
+    }
 
     /**
      * Validation rules
