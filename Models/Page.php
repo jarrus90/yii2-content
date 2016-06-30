@@ -2,6 +2,7 @@
 
 namespace jarrus90\Content\Models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use jarrus90\Multilang\Models\Language;
 class Page extends ActiveRecord {
