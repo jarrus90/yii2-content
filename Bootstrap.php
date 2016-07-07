@@ -25,6 +25,14 @@ class Bootstrap implements BootstrapInterface {
                 'blockQuery' => \jarrus90\Content\Models\Block::find(),
             ]);
 
+            if (!isset($app->get('i18n')->translations['content*'])) {
+                $app->get('i18n')->translations['content*'] = [
+                    'class' => PhpMessageSource::className(),
+                    'basePath' => __DIR__ . '/messages',
+                    'sourceLanguage' => 'en-US'
+                ];
+            }
+            
             if (!$app instanceof ConsoleApplication) {
                 $module->controllerNamespace = 'jarrus90\Content\Controllers';
                 $configUrlRule = [
@@ -37,12 +45,24 @@ class Bootstrap implements BootstrapInterface {
                 $configUrlRule['class'] = 'yii\web\GroupUrlRule';
                 $rule = Yii::createObject($configUrlRule);
                 $app->urlManager->addRules([$rule], false);
-            }
-            if (!isset($app->get('i18n')->translations['content*'])) {
-                $app->get('i18n')->translations['content*'] = [
-                    'class' => PhpMessageSource::className(),
-                    'basePath' => __DIR__ . '/messages',
-                    'sourceLanguage' => 'en-US'
+                
+                $app->params['admin']['menu']['content'] = [
+                    'label' => Yii::t('content', 'Content'),
+                    'position' => 30,
+                    'items' => [
+                        [
+                            'label' => Yii::t('content', 'Pages'),
+                            'url' => '/content/page/index'
+                        ],
+                        [
+                            'label' => Yii::t('content', 'Categories'),
+                            'url' => '/content/category/index'
+                        ],
+                        [
+                            'label' => Yii::t('content', 'Blocks'),
+                            'url' => '/content/block/index'
+                        ],
+                    ]
                 ];
             }
 

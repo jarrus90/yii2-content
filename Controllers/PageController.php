@@ -6,7 +6,7 @@ use Yii;
 use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
 use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
-
+use yii\filters\AccessControl;
 class PageController extends AdminCrudAbstract {
 
     /**
@@ -18,6 +18,20 @@ class PageController extends AdminCrudAbstract {
     protected $formClass = 'jarrus90\Content\Models\Page';
     protected $searchClass = 'jarrus90\Content\Models\Page';
 
+    /** @inheritdoc */
+    public function behaviors() {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'roles' => ['content_publisher'],
+                    ],
+                ],
+            ],
+        ];
+    }
     /**
      * List of available upload actions
      * 
