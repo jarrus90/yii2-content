@@ -58,11 +58,19 @@ class BlockController extends AdminCrudAbstract {
      */
     public function __construct($id, $module, ContentFinder $finder, $config = []) {
         $this->finder = $finder;
-        Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
-        Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Blocks'), 'url' => ['index']];
         parent::__construct($id, $module, $config);
     }
     
+    public function beforeAction($action) {
+        if(parent::beforeAction($action)) {
+            Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
+            Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Blocks'), 'url' => ['index']];
+            return true;
+        }
+        return false;
+    }
+
+
     public function actionCreate() {
         Yii::$app->view->title = Yii::t('content', 'Create block');
         return parent::actionCreate();

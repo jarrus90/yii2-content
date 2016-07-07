@@ -55,9 +55,16 @@ class CategoryController extends AdminCrudAbstract {
      */
     public function __construct($id, $module, ContentFinder $finder, $config = []) {
         $this->finder = $finder;
-        Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
-        Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Categories'), 'url' => ['index']];
         parent::__construct($id, $module, $config);
+    }
+    
+    public function beforeAction($action) {
+        if(parent::beforeAction($action)) {
+            Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
+            Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Categories'), 'url' => ['index']];
+            return true;
+        }
+        return false;
     }
 
     public function actionCreate() {
