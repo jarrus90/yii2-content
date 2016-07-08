@@ -87,5 +87,16 @@ class Category extends ActiveRecord {
         }
         return $dataProvider;
     }
+    
+    public function delete() {
+        if(parent::delete()){
+            Page::updateAll(['category_key' => null], [
+                'category_key' => $this->key,
+                'lang_code' => $this->lang_code
+            ]);
+            return true;
+        }
+        return false;
+    }
 
 }
