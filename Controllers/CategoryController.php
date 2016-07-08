@@ -93,5 +93,18 @@ class CategoryController extends AdminCrudAbstract {
         $params['lang_code'] = Yii::$app->request->get('lang_code', NULL);
         return $params;
     }
+    
+    public function actionList(){
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $items = $this->finder->findCategory(['lang_code' => Yii::$app->request->get('lang')])->asArray()->all();
+        $result = [];
+        foreach($items AS $item){
+            $result[] = [
+                'id' => $item['key'],
+                'text' => $item['title'],
+            ];
+        }
+        return ['results' => $result];
+    }
 
 }

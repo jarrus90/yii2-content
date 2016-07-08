@@ -20,9 +20,9 @@ class Page extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'create' => ['key', 'title', 'content', 'lang_code'],
-            'update' => ['key', 'title', 'content', 'lang_code'],
-            'search' => ['key', 'title', 'lang_code'],
+            'create' => ['key', 'title', 'content', 'lang_code', 'category_key'],
+            'update' => ['key', 'title', 'content', 'lang_code', 'category_key'],
+            'search' => ['key', 'title', 'lang_code', 'category_key'],
         ];
     }
     
@@ -45,6 +45,7 @@ class Page extends ActiveRecord {
             'keyValid' => ['key', 'validateKeyCodePair', 'on' => ['create', 'update']],
             'langExists' => ['lang_code', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'code'],
             'safeSearch' => [['key', 'title', 'lang_code'], 'safe', 'on' => ['search']],
+            'categoryExists' => ['category_key', 'exist', 'targetClass' => Category::className(), 'targetAttribute' => 'key']
         ];
     }
 
