@@ -46,7 +46,7 @@ class Bootstrap implements BootstrapInterface {
                 $rule = Yii::createObject($configUrlRule);
                 $app->urlManager->addRules([$rule], false);
                 
-                $app->params['admin']['menu']['content'] = function() {
+                $app->params['admin']['menu']['content'] = function() use($module) {
                     return $module->getAdminMenu();
                 };
             }
