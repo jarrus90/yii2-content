@@ -46,25 +46,9 @@ class Bootstrap implements BootstrapInterface {
                 $rule = Yii::createObject($configUrlRule);
                 $app->urlManager->addRules([$rule], false);
                 
-                $app->params['admin']['menu']['content'] = [
-                    'label' => Yii::t('content', 'Content'),
-                    'position' => 30,
-                    'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
-                    'items' => [
-                        [
-                            'label' => Yii::t('content', 'Pages'),
-                            'url' => '/content/page/index'
-                        ],
-                        [
-                            'label' => Yii::t('content', 'Categories'),
-                            'url' => '/content/category/index'
-                        ],
-                        [
-                            'label' => Yii::t('content', 'Blocks'),
-                            'url' => '/content/block/index'
-                        ],
-                    ]
-                ];
+                $app->params['admin']['menu']['content'] = function() {
+                    return $module->getAdminMenu();
+                };
             }
 
             $app->params['yii.migrations'][] = '@jarrus90/Content/migrations/';

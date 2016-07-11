@@ -34,7 +34,7 @@ class Module extends BaseModule {
                 'imageManagerJsonRoute' => '/content/upload/image-json',
                 'fileManagerJsonRoute' => '/content/upload/file-json',
                 'uploadUrl' => '@web/uploads/content'
-            ], $this->redactorConfig, [
+                    ], $this->redactorConfig, [
                 'uploadUrl' => $this->filesUploadUrl,
                 'uploadDir' => $this->filesUploadDir,
             ]),
@@ -49,6 +49,28 @@ class Module extends BaseModule {
                 ]);
             }
         }
+    }
+
+    public function getAdminMenu() {
+        return [
+            'label' => Yii::t('content', 'Content'),
+            'position' => 30,
+            'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
+            'items' => [
+                [
+                    'label' => Yii::t('content', 'Pages'),
+                    'url' => '/content/page/index'
+                ],
+                [
+                    'label' => Yii::t('content', 'Categories'),
+                    'url' => '/content/category/index'
+                ],
+                [
+                    'label' => Yii::t('content', 'Blocks'),
+                    'url' => '/content/block/index'
+                ],
+            ]
+        ];
     }
 
 }
