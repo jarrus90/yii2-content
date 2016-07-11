@@ -49,6 +49,7 @@ class Bootstrap implements BootstrapInterface {
                 $app->params['admin']['menu']['content'] = [
                     'label' => Yii::t('content', 'Content'),
                     'position' => 30,
+                    'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
                     'items' => [
                         [
                             'label' => Yii::t('content', 'Pages'),
