@@ -20,8 +20,8 @@ class Page extends ActiveRecord {
 
     public function scenarios() {
         return [
-            'create' => ['key', 'title', 'content', 'lang_code', 'category_key'],
-            'update' => ['key', 'title', 'content', 'lang_code', 'category_key'],
+            'create' => ['key', 'title', 'content', 'lang_code', 'category_key', 'meta_keywords', 'meta_description'],
+            'update' => ['key', 'title', 'content', 'lang_code', 'category_key', 'meta_keywords', 'meta_description'],
             'search' => ['key', 'title', 'lang_code', 'category_key'],
         ];
     }
@@ -32,6 +32,8 @@ class Page extends ActiveRecord {
             'title' => Yii::t('content', 'Title'),
             'content' => Yii::t('content', 'Content'),
             'lang_code' => Yii::t('content', 'Language'),
+            'meta_keywords' => Yii::t('content', 'Meta keywords'),
+            'meta_description' => Yii::t('content', 'Meta description'),
         ];
     }
 
@@ -45,7 +47,8 @@ class Page extends ActiveRecord {
             'keyValid' => ['key', 'validateKeyCodePair', 'on' => ['create', 'update']],
             'langExists' => ['lang_code', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'code'],
             'safeSearch' => [['key', 'title', 'lang_code'], 'safe', 'on' => ['search']],
-            'categoryExists' => ['category_key', 'exist', 'targetClass' => Category::className(), 'targetAttribute' => 'key']
+            'categoryExists' => ['category_key', 'exist', 'targetClass' => Category::className(), 'targetAttribute' => 'key'],
+            'metaSafe' => [['meta_keywords', 'meta_description'], 'safe', 'on' => ['create', 'update']],
         ];
     }
 

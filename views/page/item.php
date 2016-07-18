@@ -74,6 +74,8 @@ $form = ActiveForm::begin([
     ],
 ]);
 ?>
+<?= $form->field($model, 'meta_keywords') ?>
+<?= $form->field($model, 'meta_description') ?>
 
 <?= Html::submitButton(Yii::t('content', 'Save'), ['class' => 'btn btn-success btn-block']) ?>
 

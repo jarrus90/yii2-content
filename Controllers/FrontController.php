@@ -27,11 +27,23 @@ class FrontController extends Controller {
     public function actionPage($key) {
         $lang = Yii::$app->request->get('lang', Yii::$app->language);
         $page = $this->finder->findPage([
-            'key' => $key,
-            'lang_code' => $lang
-        ])->one();
+                    'key' => $key,
+                    'lang_code' => $lang
+                ])->one();
+        if (!empty($page->meta_description)) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'description',
+                'content' => $page->meta_description
+            ]);
+        }
+        if (!empty($page->meta_keywords)) {
+            Yii::$app->view->registerMetaTag([
+                'name' => 'keywords',
+                'content' => $page->meta_keywords
+            ]);
+        }
         return $this->render('page', [
-            'page' => $page
+                    'page' => $page
         ]);
     }
 

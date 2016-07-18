@@ -53,5 +53,6 @@ return [
     'Categories' => 'Категории',
     'Pages' => 'Страницы',
     'Save' => 'Сохранить',
-    'Title' => 'Заголовок'
+    'Meta keywords' => 'Ключевые слова',
+    'Meta description' => 'Описание',
 ];
