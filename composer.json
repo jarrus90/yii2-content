@@ -20,9 +20,10 @@
         "kartik-v/yii2-grid": "*",
         "creocoder/yii2-flysystem": "0.8.*",
         "jarrus90/yii2-redactor": "*",
-        "jarrus90/yii2-core": "*",
         "jarrus90/yii2-multilang": "*",
-        "jarrus90/yii2-user": "*"
+        "jarrus90/yii2-user": "*",
+        "jarrus90/yii2-core": "*",
+        "jarrus90/yii2-admin": "*"
     },
     "autoload": {
         "psr-4": {
