@@ -63,6 +63,7 @@ class BlockController extends AdminCrudAbstract {
     
     public function beforeAction($action) {
         if(parent::beforeAction($action)) {
+            Yii::$app->view->title = Yii::t('content', 'Blocks');
             Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
             Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Blocks'), 'url' => ['index']];
             return true;
