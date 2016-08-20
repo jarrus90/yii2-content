@@ -10,6 +10,7 @@ use jarrus90\Content\Models\Block;
 
 class BlockWidget extends Widget {
 
+    public $layout = '@jarrus90/Content/views/widgets/block';
     /**
      * Block key
      * @var string
@@ -61,7 +62,7 @@ class BlockWidget extends Widget {
         }
         $this->_options = ArrayHelper::merge($this->_defaultOptions, $this->options);
         if ($block->content) {
-            return $this->render('@jarrus90/Content/views/widgets/block', ['block' => $block, 'config' => $this->_options]);
+            return $this->render($this->layout, ['block' => $block, 'config' => $this->_options]);
         } else {
             return false;
         }
