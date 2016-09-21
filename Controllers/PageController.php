@@ -5,7 +5,7 @@ namespace jarrus90\Content\Controllers;
 use Yii;
 use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
-use jarrus90\Admin\Web\Controllers\AdminCrudAbstract;
+use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 use yii\filters\AccessControl;
 class PageController extends AdminCrudAbstract {
 

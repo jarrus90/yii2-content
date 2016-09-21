@@ -22,8 +22,7 @@
         "jarrus90/yii2-redactor": "*",
         "jarrus90/yii2-multilang": "*",
         "jarrus90/yii2-user": "*",
-        "jarrus90/yii2-core": "*",
-        "jarrus90/yii2-admin": "*"
+        "jarrus90/yii2-core": "*"
     },
     "autoload": {
         "psr-4": {
