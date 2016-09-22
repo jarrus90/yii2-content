@@ -1,5 +1,7 @@
 # Yii2-content
 
+[![Build Status](https://travis-ci.org/jarrus90/yii2-content.svg?branch=master)](https://travis-ci.org/jarrus90/yii2-content)
+
 The latest version includes following features:
 
 * Pages amd categories management
