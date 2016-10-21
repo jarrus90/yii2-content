@@ -1,5 +1,9 @@
 <?php
 
+namespace jarrus90\Content\migrations;
+
+use Yii;
+
 class m160707_075919_content_category_update extends \yii\db\Migration {
 
     public function up() {

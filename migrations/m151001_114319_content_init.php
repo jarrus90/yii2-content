@@ -1,5 +1,9 @@
 <?php
 
+namespace jarrus90\Content\migrations;
+
+use Yii;
+
 class m151001_114319_content_init extends \yii\db\Migration {
 
     /**

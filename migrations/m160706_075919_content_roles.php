@@ -1,5 +1,7 @@
 <?php
 
+namespace jarrus90\Content\migrations;
+
 use jarrus90\User\migrations\RbacMigration;
 
 class m160706_075919_content_roles extends RbacMigration {

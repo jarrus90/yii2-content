@@ -1,5 +1,7 @@
 <?php
 
+namespace jarrus90\Content\migrations;
+
 class m160718_075919_content_page_meta extends \yii\db\Migration {
 
     public function up() {
