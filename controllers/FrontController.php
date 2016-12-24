@@ -1,6 +1,6 @@
 <?php
 
-namespace jarrus90\Content\Controllers;
+namespace jarrus90\Content\controllers;
 
 use Yii;
 use jarrus90\Content\ContentFinder;

@@ -34,7 +34,6 @@ class Bootstrap implements BootstrapInterface {
             }
             
             if (!$app instanceof ConsoleApplication) {
-                $module->controllerNamespace = 'jarrus90\Content\Controllers';
                 $configUrlRule = [
                     'prefix' => $module->urlPrefix,
                     'rules' => $module->urlRules,

@@ -1,6 +1,6 @@
 <?php
 
-namespace jarrus90\Content\Controllers;
+namespace jarrus90\Content\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
@@ -8,15 +8,18 @@ use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
 use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 
-class CategoryController extends AdminCrudAbstract {
-
+class BlockController extends AdminCrudAbstract {
+    
     /**
      * @var ContentFinder 
      */
     protected $finder;
-    protected $modelClass = 'jarrus90\Content\Models\Category';
-    protected $formClass = 'jarrus90\Content\Models\Category';
-    protected $searchClass = 'jarrus90\Content\Models\Category';
+    
+    protected $modelClass = 'jarrus90\Content\Models\Block';
+    
+    protected $formClass = 'jarrus90\Content\Models\Block';
+    
+    protected $searchClass = 'jarrus90\Content\Models\Block';
 
     /** @inheritdoc */
     public function behaviors() {
@@ -32,7 +35,7 @@ class CategoryController extends AdminCrudAbstract {
             ],
         ];
     }
-
+    
     /**
      * List of available upload actions
      * 
@@ -41,12 +44,12 @@ class CategoryController extends AdminCrudAbstract {
     public function actions() {
         return [
             'check' => [
-                'class' => '\jarrus90\Content\Controllers\CheckAction',
-                'query' => $this->finder->getCategoryQuery()
+                'class' => '\jarrus90\Content\controllers\CheckAction',
+                'query' => $this->finder->getBlockQuery()
             ],
         ];
     }
-
+    
     /**
      * @param string  $id
      * @param BaseModule $module
@@ -60,52 +63,39 @@ class CategoryController extends AdminCrudAbstract {
     
     public function beforeAction($action) {
         if(parent::beforeAction($action)) {
-            Yii::$app->view->title = Yii::t('content', 'Categories');
+            Yii::$app->view->title = Yii::t('content', 'Blocks');
             Yii::$app->view->params['breadcrumbs'][] = Yii::t('content', 'Content');
-            Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Categories'), 'url' => ['index']];
+            Yii::$app->view->params['breadcrumbs'][] = ['label' => Yii::t('content', 'Blocks'), 'url' => ['index']];
             return true;
         }
         return false;
     }
 
+
     public function actionCreate() {
-        Yii::$app->view->title = Yii::t('content', 'Create category');
+        Yii::$app->view->title = Yii::t('content', 'Create block');
         return parent::actionCreate();
     }
 
     public function actionUpdate($id) {
         $item = $this->getItem($id);
-        Yii::$app->view->title = Yii::t('content', 'Edit category {title}', ['title' => $item->title]);
+        Yii::$app->view->title = Yii::t('content', 'Edit block {title}', ['title' => $item->title]);
         return parent::actionUpdate($id);
     }
 
     protected function getItem($id) {
-        $item = $this->finder->findCategory(['id' => $id])->one();
+        $item = $this->finder->findBlock(['id' => $id])->one();
         if ($item) {
             return $item;
         } else {
-            throw new \yii\web\NotFoundHttpException(Yii::t('content', 'The requested category does not exist'));
+            throw new \yii\web\NotFoundHttpException(Yii::t('content', 'The requested block does not exist'));
         }
     }
-
+    
     protected function createModelParams() {
         $params = parent::createModelParams();
         $params['key'] = Yii::$app->request->get('key', NULL);
         $params['lang_code'] = Yii::$app->request->get('lang_code', NULL);
         return $params;
     }
-    
-    public function actionList(){
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        $items = $this->finder->findCategory(['lang_code' => Yii::$app->request->get('lang')])->asArray()->all();
-        $result = [];
-        foreach($items AS $item){
-            $result[] = [
-                'id' => $item['key'],
-                'text' => $item['title'],
-            ];
-        }
-        return ['results' => $result];
-    }
-
 }

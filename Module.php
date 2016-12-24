@@ -23,7 +23,7 @@ class Module extends BaseModule {
     public $filesUploadDir = '@webroot/uploads/content';
     public $redactorConfig = [];
     public $useCommonStorage = false;
-
+    
     public function init() {
         parent::init();
         $this->modules = [

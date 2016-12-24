@@ -1,7 +1,7 @@
 <?php
 
 
-namespace jarrus90\Content\Controllers;
+namespace jarrus90\Content\controllers;
 
 use Yii;
 use yii\web\Response;
