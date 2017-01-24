@@ -78,7 +78,7 @@ class ContentFinder extends Object {
     }
 
     /**
-     * Finds a page by the given condition.
+     * Finds a block by the given condition.
      *
      * @param mixed $condition Condition to be used on search.
      *

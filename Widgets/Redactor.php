@@ -5,6 +5,10 @@ namespace jarrus90\Content\Widgets;
 use yii\base\InvalidConfigException;
 use Yii;
 
+/**
+ * @package jarrus90\Content\Widgets
+ */
+
 class Redactor extends \yii\redactor\widgets\Redactor {
 
     /**

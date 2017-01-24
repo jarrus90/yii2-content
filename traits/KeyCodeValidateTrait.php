@@ -3,12 +3,10 @@
 namespace jarrus90\Content\traits;
 
 use yii\validators\ExistValidator;
-use jarrus90\Content\Module;
 use jarrus90\Multilang\Models\Language;
 
 /**
- * Trait ModuleTrait
- * @property-read Module $module
+ * Trait KeyCodeValidateTrait
  * @package jarrus90\Content\traits
  */
 trait KeyCodeValidateTrait {

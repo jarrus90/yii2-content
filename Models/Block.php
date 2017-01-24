@@ -5,19 +5,30 @@ namespace jarrus90\Content\Models;
 use Yii;
 use yii\db\ActiveRecord;
 use jarrus90\Multilang\Models\Language;
+
+/**
+ * Block data model
+ *
+ * @property int $id Block item primary key
+ * @property string $key Block key
+ * @property string $title Block title
+ * @property string $content Block content
+ * @property string $lang_code Block language
+ *
+ * @property-write Block $item Block item
+ *
+ * @package jarrus90\Content\models
+ */
 class Block extends ActiveRecord {
 
     use \jarrus90\Content\traits\KeyCodeValidateTrait;
-    /**
-     * @var Block 
-     */
-    public $item;
 
     /** @inheritdoc */
     public static function tableName() {
         return '{{%content_block}}';
     }
-
+    
+    /** @inheritdoc */
     public function scenarios() {
         return [
             'create' => ['key', 'title', 'content', 'lang_code'],
@@ -25,7 +36,8 @@ class Block extends ActiveRecord {
             'search' => ['key', 'title', 'lang_code'],
         ];
     }
-    
+
+    /** @inheritdoc */
     public function attributeLabels(){
         return [
             'key' => Yii::t('content', 'Key'),
@@ -48,18 +60,19 @@ class Block extends ActiveRecord {
         ];
     }
 
-    /** @inheritdoc */
-    public function init() {
-        parent::init();
-        if ($this->item instanceof Block) {
-            $this->id = $this->item->id;
-            $this->setAttributes($this->item->getAttributes());
-            $this->setIsNewRecord($this->item->getIsNewRecord());
+    /**
+     * @param \jarrus90\Content\Models\Block $item
+     */
+    public function setItem($item) {
+        if ($item instanceof Block) {
+            $this->id = $item->id;
+            $this->setAttributes($item->getAttributes());
+            $this->setIsNewRecord($item->getIsNewRecord());
         }
     }
 
     /**
-     * Search categories list
+     * Search blocks list
      * @param $params
      * @return \yii\data\ActiveDataProvider
      */

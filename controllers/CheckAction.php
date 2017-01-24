@@ -7,6 +7,10 @@ use yii\base\Action;
 use yii\db\ActiveQuery;
 use yii\base\InvalidConfigException;
 
+/**
+ * @package jarrus90\Content\controllers
+ */
+
 class CheckAction extends Action {
 
     public $query;

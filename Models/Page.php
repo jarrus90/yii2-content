@@ -5,19 +5,33 @@ namespace jarrus90\Content\Models;
 use Yii;
 use yii\db\ActiveRecord;
 use jarrus90\Multilang\Models\Language;
+
+/**
+ * Page data model
+ *
+ * @property int $id Page item primary key
+ * @property string $key Page key
+ * @property string $title Page title
+ * @property string $content Page content
+ * @property string $lang_code Page language
+ *
+ * @property string $meta_keywords Page Meta keywords
+ * @property string $meta_description Page Meta description
+ *
+ * @property-write \jarrus90\Content\Models\Page $item Page item
+ *
+ * @package jarrus90\Content\models
+ */
 class Page extends ActiveRecord {
 
     use \jarrus90\Content\traits\KeyCodeValidateTrait;
-    /**
-     * @var Page 
-     */
-    public $item;
 
     /** @inheritdoc */
     public static function tableName() {
         return '{{%content_page}}';
     }
 
+    /** @inheritdoc */
     public function scenarios() {
         return [
             'create' => ['key', 'title', 'content', 'lang_code', 'category_key', 'meta_keywords', 'meta_description'],
@@ -25,8 +39,9 @@ class Page extends ActiveRecord {
             'search' => ['key', 'title', 'lang_code', 'category_key'],
         ];
     }
-    
-    public function attributeLabels(){
+
+    /** @inheritdoc */
+    public function attributeLabels() {
         return [
             'key' => Yii::t('content', 'Key'),
             'title' => Yii::t('content', 'Title'),
@@ -52,13 +67,14 @@ class Page extends ActiveRecord {
         ];
     }
 
-    /** @inheritdoc */
-    public function init() {
-        parent::init();
-        if ($this->item instanceof Page) {
-            $this->id = $this->item->id;
-            $this->setAttributes($this->item->getAttributes());
-            $this->setIsNewRecord($this->item->getIsNewRecord());
+    /**
+     * @param \jarrus90\Content\Models\Page $item
+     */
+    public function setItem($item) {
+        if ($item instanceof Page) {
+            $this->id = $item->id;
+            $this->setAttributes($item->getAttributes());
+            $this->setIsNewRecord($item->getIsNewRecord());
         }
     }
 

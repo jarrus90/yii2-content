@@ -7,6 +7,11 @@ use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
 use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 use yii\filters\AccessControl;
+
+/**
+ * @package jarrus90\Content\controllers
+ */
+
 class PageController extends AdminCrudAbstract {
 
     /**

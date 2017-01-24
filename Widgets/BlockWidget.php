@@ -8,9 +8,14 @@ use yii\helpers\ArrayHelper;
 use yii\caching\TagDependency;
 use jarrus90\Content\Models\Block;
 
+/**
+ * @package jarrus90\Content\Widgets
+ */
+
 class BlockWidget extends Widget {
 
     public $layout = '@jarrus90/Content/views/widgets/block';
+    
     /**
      * Block key
      * @var string

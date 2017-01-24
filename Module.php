@@ -6,24 +6,47 @@ use Yii;
 use yii\base\Module as BaseModule;
 use yii\helpers\ArrayHelper;
 
+/**
+ * @package jarrus90\Content
+ */
+
 class Module extends BaseModule {
 
     /**
      * @var string The prefix for user module URL.
      *
-     * @See [[GroupUrlRule::prefix]]
+     * @See [[yii\web\GroupUrlRule::prefix]]
      */
     public $urlPrefix = 'content';
 
-    /** @var array The rules to be used in URL management. */
+    /**
+     * @var array The rules to be used in URL management.
+     */
     public $urlRules = [
         '<key:[A-Za-z0-9_-]+>' => 'front/page'
     ];
+
+    /**
+     * @var string Url for uploads.
+     */
     public $filesUploadUrl = '@web/uploads/content';
+
+    /**
+     * @var string Path for uploads.
+     */
     public $filesUploadDir = '@webroot/uploads/content';
+
+    /**
+     * @var array Configuration for redactor.
+     */
     public $redactorConfig = [];
+
+    /**
+     * @var bool
+     */
     public $useCommonStorage = false;
-    
+
+    /** @inheritdoc */
     public function init() {
         parent::init();
         $this->modules = [
@@ -34,7 +57,7 @@ class Module extends BaseModule {
                 'imageManagerJsonRoute' => '/content/upload/image-json',
                 'fileManagerJsonRoute' => '/content/upload/file-json',
                 'uploadUrl' => '@web/uploads/content'
-                    ], $this->redactorConfig, [
+            ], $this->redactorConfig, [
                 'uploadUrl' => $this->filesUploadUrl,
                 'uploadDir' => $this->filesUploadDir,
             ]),
@@ -51,6 +74,10 @@ class Module extends BaseModule {
         }
     }
 
+    /**
+     * Get list of admin menu items
+     * @return array List
+     */
     public function getAdminMenu() {
         return [
             'label' => Yii::t('content', 'Content'),

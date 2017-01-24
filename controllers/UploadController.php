@@ -1,11 +1,13 @@
 <?php
 
-
 namespace jarrus90\Content\controllers;
 
-use Yii;
 use yii\web\Response;
 use jarrus90\Content\traits\ModuleTrait;
+
+/**
+ * @package jarrus90\Content\controllers
+ */
 
 class UploadController extends \yii\web\Controller {
 
@@ -33,23 +35,23 @@ class UploadController extends \yii\web\Controller {
         return [
             'file' => [
                 'class' => '\jarrus90\Redactor\Actions\FileUploadAction',
-                'module' => $this->module->getModule('redactor'),
-                'storage' => $this->module->storage
+                'module' => $this->getModule()->getModule('redactor'),
+                'storage' => $this->getModule()->storage
             ],
             'image' => [
                 'class' => '\jarrus90\Redactor\Actions\ImageUploadAction',
-                'module' => $this->module->getModule('redactor'),
-                'storage' => $this->module->storage
+                'module' => $this->getModule()->getModule('redactor'),
+                'storage' => $this->getModule()->storage
             ],
             'file-json' => [
                 'class' => '\jarrus90\Redactor\Actions\FileManagerJsonAction',
-                'module' => $this->module->getModule('redactor'),
-                'storage' => $this->module->storage
+                'module' => $this->getModule()->getModule('redactor'),
+                'storage' => $this->getModule()->storage
             ],
             'image-json' => [
                 'class' => '\jarrus90\Redactor\Actions\ImageManagerJsonAction',
-                'module' => $this->module->getModule('redactor'),
-                'storage' => $this->module->storage
+                'module' => $this->getModule()->getModule('redactor'),
+                'storage' => $this->getModule()->storage
             ],
         ];
     }

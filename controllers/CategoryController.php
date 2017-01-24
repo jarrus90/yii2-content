@@ -8,6 +8,10 @@ use yii\base\Module as BaseModule;
 use jarrus90\Content\ContentFinder;
 use jarrus90\Core\Web\Controllers\AdminCrudAbstract;
 
+/**
+ * @package jarrus90\Content\controllers
+ */
+
 class CategoryController extends AdminCrudAbstract {
 
     /**
@@ -57,7 +61,8 @@ class CategoryController extends AdminCrudAbstract {
         $this->finder = $finder;
         parent::__construct($id, $module, $config);
     }
-    
+
+    /** @inheritdoc */
     public function beforeAction($action) {
         if(parent::beforeAction($action)) {
             Yii::$app->view->title = Yii::t('content', 'Categories');
@@ -68,17 +73,20 @@ class CategoryController extends AdminCrudAbstract {
         return false;
     }
 
+    /** @inheritdoc */
     public function actionCreate() {
         Yii::$app->view->title = Yii::t('content', 'Create category');
         return parent::actionCreate();
     }
 
+    /** @inheritdoc */
     public function actionUpdate($id) {
         $item = $this->getItem($id);
         Yii::$app->view->title = Yii::t('content', 'Edit category {title}', ['title' => $item->title]);
         return parent::actionUpdate($id);
     }
 
+    /** @inheritdoc */
     protected function getItem($id) {
         $item = $this->finder->findCategory(['id' => $id])->one();
         if ($item) {
@@ -88,12 +96,14 @@ class CategoryController extends AdminCrudAbstract {
         }
     }
 
+    /** @inheritdoc */
     protected function createModelParams() {
         $params = parent::createModelParams();
         $params['key'] = Yii::$app->request->get('key', NULL);
         $params['lang_code'] = Yii::$app->request->get('lang_code', NULL);
         return $params;
     }
+
     
     public function actionList(){
         \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;

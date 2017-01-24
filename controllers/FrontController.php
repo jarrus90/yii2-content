@@ -6,6 +6,10 @@ use Yii;
 use jarrus90\Content\ContentFinder;
 use jarrus90\Core\Web\Controllers\FrontController as Controller;
 
+/**
+ * @package jarrus90\Content\controllers
+ */
+
 class FrontController extends Controller {
 
     /**
