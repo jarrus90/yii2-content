@@ -17,11 +17,11 @@ use jarrus90\Multilang\Models\Language;
  *
  * @property-write Block $item Block item
  *
- * @package jarrus90\Content\models
+ * @package jarrus90\Content\Models
  */
 class Block extends ActiveRecord {
 
-    use \jarrus90\Content\traits\KeyCodeValidateTrait;
+    use \jarrus90\Content\traits\KeyLangValidateTrait;
 
     /** @inheritdoc */
     public static function tableName() {
@@ -54,7 +54,7 @@ class Block extends ActiveRecord {
     public function rules() {
         return [
             'required' => [['key', 'title', 'content', 'lang_code'], 'required', 'on' => ['create', 'update']],
-            'keyValid' => ['key', 'validateKeyCodePair', 'on' => ['create', 'update']],
+            'keyValid' => ['key', 'validateKeyLangPair', 'on' => ['create', 'update']],
             'langExists' => ['lang_code', 'exist', 'targetClass' => Language::className(), 'targetAttribute' => 'code'],
             'safeSearch' => [['key', 'title', 'lang_code'], 'safe', 'on' => ['search']],
         ];
@@ -80,9 +80,6 @@ class Block extends ActiveRecord {
         $query = self::find();
         $dataProvider = new \yii\data\ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                'pageSize' => 20,
-            ],
             'sort' => [
                 'defaultOrder' => [
                     'id' => SORT_DESC
@@ -90,9 +87,11 @@ class Block extends ActiveRecord {
             ]
         ]);
         if ($this->load($params) && $this->validate()) {
+            $query->andFilterWhere(['id' => $this->id]);
+            $query->andFilterWhere(['lang_code' => $this->lang_code]);
             $query->andFilterWhere(['like', 'key', $this->key]);
             $query->andFilterWhere(['like', 'title', $this->title]);
-            $query->andFilterWhere(['lang_code' => $this->lang_code]);
+            $query->andFilterWhere(['like', 'content', $this->content]);
         }
         return $dataProvider;
     }
