@@ -9,7 +9,6 @@ use yii\helpers\ArrayHelper;
 /**
  * @package jarrus90\Content
  */
-
 class Module extends BaseModule {
 
     /**
@@ -57,7 +56,7 @@ class Module extends BaseModule {
                 'imageManagerJsonRoute' => '/content/upload/image-json',
                 'fileManagerJsonRoute' => '/content/upload/file-json',
                 'uploadUrl' => '@web/uploads/content'
-            ], $this->redactorConfig, [
+                    ], $this->redactorConfig, [
                 'uploadUrl' => $this->filesUploadUrl,
                 'uploadDir' => $this->filesUploadDir,
             ]),
@@ -80,22 +79,28 @@ class Module extends BaseModule {
      */
     public function getAdminMenu() {
         return [
-            'label' => Yii::t('content', 'Content'),
-            'position' => 30,
-            'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
-            'items' => [
-                [
-                    'label' => Yii::t('content', 'Pages'),
-                    'url' => '/content/page/index'
-                ],
-                [
-                    'label' => Yii::t('content', 'Categories'),
-                    'url' => '/content/category/index'
-                ],
-                [
-                    'label' => Yii::t('content', 'Blocks'),
-                    'url' => '/content/block/index'
-                ],
+            'content' => [
+                'encode' => false,
+                'label' => '<i class="fa fa-fw fa-newspaper-o"></i>' . Yii::t('content', 'Content'),
+                'position' => 30,
+                'visible' => Yii::$app->user->can('content_publisher'),
+                'items' => [
+                    [
+                        'label' => Yii::t('content', 'Pages'),
+                        'url' => ['/content/page/index'],
+                        'visible' => Yii::$app->user->can('content_publisher')
+                    ],
+                    [
+                        'label' => Yii::t('content', 'Categories'),
+                        'url' => ['/content/category/index'],
+                        'visible' => Yii::$app->user->can('content_publisher')
+                    ],
+                    [
+                        'label' => Yii::t('content', 'Blocks'),
+                        'url' => ['/content/block/index'],
+                        'visible' => Yii::$app->user->can('content_publisher')
+                    ],
+                ]
             ]
         ];
     }
