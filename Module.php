@@ -80,8 +80,8 @@ class Module extends BaseModule {
     public function getAdminMenu() {
         return [
             'content' => [
-                'encode' => false,
-                'label' => '<i class="fa fa-fw fa-newspaper-o"></i>' . Yii::t('content', 'Content'),
+                'label' => Yii::t('content', 'Content'),
+                'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
                 'position' => 30,
                 'visible' => Yii::$app->user->can('content_publisher'),
                 'items' => [
