@@ -81,7 +81,7 @@ class Module extends BaseModule {
         return [
             'content' => [
                 'label' => Yii::t('content', 'Content'),
-                'icon' => '<i class="fa fa-fw fa-newspaper-o"></i>',
+                'icon' => 'fa fa-fw fa-newspaper-o',
                 'position' => 30,
                 'visible' => Yii::$app->user->can('content_publisher'),
                 'items' => [
